@@ -4,10 +4,13 @@ using ESAPIX.Common;
 using ESAPIX.Common.Args;
 using ESAPIX.Interfaces;
 using ESAPIX.Services;
+using ESAPIX_WPF_Example.Helpers;
 using ESAPX_StarterUI.Views;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Prism.Events;
 using Prism.Ioc;
-using Prism.Modularity;
+using Serilog.Extensions.Logging;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -78,6 +81,9 @@ namespace ESAPX_StarterUI
             _ea = Container.Resolve<IEventAggregator>();
             containerRegistry.RegisterInstance(this._esapiServ);
             containerRegistry.RegisterInstance(this.Container);
+            containerRegistry.RegisterInstance(LogHelper.GetLogger(toConsole: true, toFile: true));
+            containerRegistry.RegisterInstance(new SerilogLoggerFactory(Serilog.Log.Logger));
+            containerRegistry.RegisterInstance(typeof(ILogger<>), typeof(Logger<>));
         }
 
         protected override void OnExit(ExitEventArgs e)

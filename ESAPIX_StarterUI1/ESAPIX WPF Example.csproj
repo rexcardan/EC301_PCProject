@@ -1,43 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net480</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <Platforms>x64</Platforms>
-    <ApplicationIcon>Resources\esapix.ico</ApplicationIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net480</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Platforms>x64</Platforms>
+		<ApplicationIcon>Resources\esapix.ico</ApplicationIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Resources\esapix.ico" />
-    <None Remove="Resources\esapix.png" />
-    <None Remove="Resources\esapixSplash.jpg" />
-    <None Remove="Resources\save.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Resources\esapix.ico" />
+		<None Remove="Resources\esapix.png" />
+		<None Remove="Resources\esapixSplash.jpg" />
+		<None Remove="Resources\save.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="ESAPIX_16.1" Version="1.6.7845.354" />
-    <PackageReference Include="Prism.Ninject" Version="7.2.0.1422" />
-    <PackageReference Include="WPF-UI" Version="4.0.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ESAPIX_16.1" Version="1.6.7845.354" />
+		<PackageReference Include="Prism.Ninject" Version="7.2.0.1422" />
+		<PackageReference Include="WPF-UI" Version="4.0.2" />
+		<PackageReference Include="Serilog" Version="3.1.1" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="VMS.TPS.Common.Model.API">
-      <HintPath>C:\Program Files (x86)\Varian\RTM\18.1\esapi\API\VMS.TPS.Common.Model.API.dll</HintPath>
-    </Reference>
-    <Reference Include="VMS.TPS.Common.Model.Types">
-      <HintPath>C:\Program Files (x86)\Varian\RTM\18.1\esapi\API\VMS.TPS.Common.Model.Types.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="VMS.TPS.Common.Model.API">
+			<HintPath>C:\Program Files (x86)\Varian\RTM\18.1\esapi\API\VMS.TPS.Common.Model.API.dll</HintPath>
+		</Reference>
+		<Reference Include="VMS.TPS.Common.Model.Types">
+			<HintPath>C:\Program Files (x86)\Varian\RTM\18.1\esapi\API\VMS.TPS.Common.Model.Types.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\esapix.ico" />
-    <Resource Include="Resources\esapix.png" />
-    <Resource Include="Resources\save.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\esapix.ico" />
+		<Resource Include="Resources\esapix.png" />
+		<Resource Include="Resources\save.png" />
+		<Resource Include="Resources\browser.png" />
+		<Resource Include="Resources\history.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <SplashScreen Include="Resources\esapixSplash.jpg" />
-  </ItemGroup>
+	<ItemGroup>
+		<SplashScreen Include="Resources\esapixSplash.jpg" />
+	</ItemGroup>
 
 </Project>

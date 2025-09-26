@@ -7,7 +7,7 @@
             <StackPanel MinWidth="600">
                 <!-- Header with Theme Toggle -->
                 <DockPanel Margin="0,0,0,8">
-                    <TextBlock Text="ESAPIX Patient Selector" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" DockPanel.Dock="Top" VerticalAlignment="Center" />
+                    <TextBlock Text="ESAPIX Patient Selector" FontWeight="Bold" FontSize="16" DockPanel.Dock="Left" VerticalAlignment="Center" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
                         <TextBlock Text="Theme" VerticalAlignment="Center" Margin="0,0,8,0" />
                         <ui:ToggleSwitch x:Name="ThemeSwitch"
@@ -61,10 +61,16 @@
                             </StackPanel>
                         </ui:Button>
                         <ui:Button Margin="6,0,0,0" Padding="10,6" Command="{Binding LoadContextCommand}">
-                            <TextBlock Text="Load Context" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/ESAPIX_StarterUI1;component/Resources/browser.png" Width="16" Height="16" Margin="0,0,6,0" />
+                                <TextBlock Text="Load Context" VerticalAlignment="Center" />
+                            </StackPanel>
                         </ui:Button>
                         <ui:Button Margin="6,0,0,0" Padding="10,6" Command="{Binding HistoryContextCommand}">
-                            <TextBlock Text="History" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/ESAPIX_StarterUI1;component/Resources/history.png" Width="16" Height="16" Margin="0,0,6,0" />
+                                <TextBlock Text="History" VerticalAlignment="Center" />
+                            </StackPanel>
                         </ui:Button>
                     </StackPanel>
 
