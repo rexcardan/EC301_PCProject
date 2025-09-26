@@ -16,6 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="ESAPIX_16.1" Version="1.6.7845.354" />
 		<PackageReference Include="Prism.Ninject" Version="7.2.0.1422" />
 		<PackageReference Include="WPF-UI" Version="4.0.2" />
