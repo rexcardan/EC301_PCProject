@@ -60,6 +60,12 @@
                                 <TextBlock Text="Save" VerticalAlignment="Center" />
                             </StackPanel>
                         </ui:Button>
+                        <ui:Button Margin="6,0,0,0" Padding="10,6" Command="{Binding LoadContextCommand}">
+                            <TextBlock Text="Load Context" VerticalAlignment="Center" />
+                        </ui:Button>
+                        <ui:Button Margin="6,0,0,0" Padding="10,6" Command="{Binding HistoryContextCommand}">
+                            <TextBlock Text="History" VerticalAlignment="Center" />
+                        </ui:Button>
                     </StackPanel>
 
                     <!-- Status Bar -->

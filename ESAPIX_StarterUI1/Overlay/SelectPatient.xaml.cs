@@ -18,6 +18,8 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using VMS.TPS.Common.Model.API;
 using Wpf.Ui.Appearance;
+using Microsoft.Win32;
+using ESAPX_StarterUI.Properties;
 
 
 #endregion
@@ -53,6 +55,90 @@ namespace ESAPIX.AppKit.Overlay
                 {
                     ContextIO.SaveToFile(sc);
                 });
+            });
+
+            LoadContextCommand = new DelegateCommand(async () =>
+            {
+                var dlg = new OpenFileDialog()
+                {
+                    Title = "Select ESAPI Context File",
+                    Filter = "Context files (*.txt)|*.txt|All files (*.*)|*.*",
+                    CheckFileExists = true,
+                    Multiselect = false
+                };
+
+                var result = dlg.ShowDialog();
+                if (result != true)
+                {
+                    UpdateStatus("Context load canceled.");
+                    return;
+                }
+
+                var args = ContextIO.ReadArgsFromFile(dlg.FileName);
+                if (args == null || args.Length == 0)
+                {
+                    UpdateStatus("Selected file had no valid context.");
+                    return;
+                }
+
+                await AppComThread.Instance.ExecuteAsync(sac =>
+                {
+                    ArgContextSetter.Set(sac, args);
+                });
+
+                // Persist paths: shift last to previous, then set new last
+                var previous = Settings.Default.LastContextPath;
+                if (!string.IsNullOrWhiteSpace(previous) && !string.Equals(previous, dlg.FileName, StringComparison.OrdinalIgnoreCase))
+                {
+                    Settings.Default.PreviousContextPath = previous;
+                }
+                Settings.Default.LastContextPath = dlg.FileName;
+                Settings.Default.Save();
+
+                // Refresh UI lists after applying context
+                Courses.Clear();
+                var courseNames = AppComThread.Instance.GetValue(sc => sc.Patient?.Courses?.Select(c => c.Id).ToList() ?? new List<string>());
+                courseNames.ForEach(Courses.Add);
+                SelectedCourse = AppComThread.Instance.GetValue(sc => sc.Course?.Id);
+                OnPropertyChanged("Courses");
+                OnPropertyChanged("SelectedCourse");
+                OnPropertyChanged("Status");
+                UpdateStatus($"Loaded context from {System.IO.Path.GetFileName(dlg.FileName)}");
+            });
+
+            HistoryContextCommand = new DelegateCommand(async () =>
+            {
+                var path = !string.IsNullOrWhiteSpace(Settings.Default.PreviousContextPath)
+                    ? Settings.Default.PreviousContextPath
+                    : Settings.Default.LastContextPath;
+
+                if (string.IsNullOrWhiteSpace(path))
+                {
+                    UpdateStatus("No context history available.");
+                    return;
+                }
+
+                var args = ContextIO.ReadArgsFromFile(path);
+                if (args == null || args.Length == 0)
+                {
+                    UpdateStatus("History file had no valid context.");
+                    return;
+                }
+
+                await AppComThread.Instance.ExecuteAsync(sac =>
+                {
+                    ArgContextSetter.Set(sac, args);
+                });
+
+                // Do not rotate on history load; just inform
+                Courses.Clear();
+                var courseNames = AppComThread.Instance.GetValue(sc => sc.Patient?.Courses?.Select(c => c.Id).ToList() ?? new List<string>());
+                courseNames.ForEach(Courses.Add);
+                SelectedCourse = AppComThread.Instance.GetValue(sc => sc.Course?.Id);
+                OnPropertyChanged("Courses");
+                OnPropertyChanged("SelectedCourse");
+                OnPropertyChanged("Status");
+                UpdateStatus($"Loaded context from history: {System.IO.Path.GetFileName(path)}");
             });
         }
 
@@ -158,6 +244,8 @@ namespace ESAPIX.AppKit.Overlay
         }
 
         public DelegateCommand SaveContextCommand { get; set; }
+        public DelegateCommand LoadContextCommand { get; set; }
+        public DelegateCommand HistoryContextCommand { get; set; }
 
         #region AUTOCOMPLETE FUNCTIONS
         private void SearchForPatientCandidates(string inputText)
@@ -269,7 +357,6 @@ namespace ESAPIX.AppKit.Overlay
             }
             catch { /* ignore if theme manager unavailable */ }
         }
-
         // Optional: initialize toggle to current theme if you add a reliable getter in the future.
     }
 }

@@ -21,6 +21,9 @@
                          Title="{Binding Title, FallbackValue=ESAPIX Starter UI}"
                          CloseWindowByDoubleClickOnIcon="True"/>
 
+            <!-- Host for patient selector overlay, sits below the TitleBar -->
+            <ContentControl x:Name="PatientSelectorHost" DockPanel.Dock="Top" />
+
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -33,7 +36,11 @@
                 <ui:DataGrid Grid.Row="1"
                              Margin="0,8,0,8"
                              AutoGenerateColumns="False"
-                             ItemsSource="{Binding Constraints}">
+                             ItemsSource="{Binding Constraints}"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Width="800"
+                             Height="300">
                     <ui:DataGrid.Columns>
                         <DataGridTextColumn Header="Constraint" Binding="{Binding Constraint.FullName}"/>
                         <DataGridTextColumn Header="Result" Binding="{Binding Result.ResultType}"/>

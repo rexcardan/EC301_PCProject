@@ -41,21 +41,17 @@ namespace ESAPX_StarterUI
 
             addSelection = new EventHandler((o, args) =>
             {
-                //Adds the patient selection UI on main window
-                var currentContent = (UIElement)win.Content;
-                var stackPanel = new DockPanel();
-                stackPanel.VerticalAlignment = VerticalAlignment.Stretch;
-                win.Content = stackPanel;
+                // Place the patient selection UI below the TitleBar using the host defined in MainView.xaml
                 var selectPat = new SelectPatient();
                 var selectPatContent = (FrameworkElement)selectPat.Content;
                 selectPatContent.DataContext = selectPat;
                 selectPat.Content = null;
-                stackPanel.Children.Add(selectPatContent);
-                stackPanel.Children.Add(currentContent);
-                DockPanel.SetDock(selectPatContent, Dock.Top);
-                DockPanel.SetDock(currentContent, Dock.Top);
-                win.WindowState = WindowState.Maximized;
-                win.Content = stackPanel;
+
+                var host = (ContentControl)win.FindName("PatientSelectorHost");
+                if (host != null)
+                {
+                    host.Content = selectPatContent;
+                }
                 win.ContentRendered -= addSelection;
             });
 

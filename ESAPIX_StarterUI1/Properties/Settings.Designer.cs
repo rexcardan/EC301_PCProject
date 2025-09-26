@@ -26,5 +26,33 @@ namespace ESAPX_StarterUI.Properties
                 return defaultInstance;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public string LastContextPath
+        {
+            get
+            {
+                return ((string)(this["LastContextPath"]));
+            }
+            set
+            {
+                this["LastContextPath"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public string PreviousContextPath
+        {
+            get
+            {
+                return ((string)(this["PreviousContextPath"]));
+            }
+            set
+            {
+                this["PreviousContextPath"] = value;
+            }
+        }
     }
 }
