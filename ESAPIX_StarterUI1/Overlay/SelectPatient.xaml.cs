@@ -260,7 +260,7 @@ namespace ESAPIX.AppKit.Overlay
         }
         #endregion
 
-        private void ThemeSwitch_Toggled(object sender, RoutedEventArgs e)
+        private void ThemeSwitch_Checked(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -269,5 +269,7 @@ namespace ESAPIX.AppKit.Overlay
             }
             catch { /* ignore if theme manager unavailable */ }
         }
+
+        // Optional: initialize toggle to current theme if you add a reliable getter in the future.
     }
 }

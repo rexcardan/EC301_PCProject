@@ -4,16 +4,17 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
     <Grid x:Name="selGrid">
         <Border Padding="10">
-            <StackPanel MinWidth="600" Spacing="8">
+            <StackPanel MinWidth="600">
                 <!-- Header with Theme Toggle -->
-                <DockPanel>
+                <DockPanel Margin="0,0,0,8">
                     <TextBlock Text="ESAPIX Patient Selector" FontWeight="Bold" FontSize="16" DockPanel.Dock="Left" VerticalAlignment="Center" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
                         <TextBlock Text="Theme" VerticalAlignment="Center" Margin="0,0,8,0" />
                         <ui:ToggleSwitch x:Name="ThemeSwitch"
                                          OffContent="Light"
                                          OnContent="Dark"
-                                         Toggled="ThemeSwitch_Toggled" />
+                                         Checked="ThemeSwitch_Checked"
+                                         Unchecked="ThemeSwitch_Checked" />
                     </StackPanel>
                 </DockPanel>
 
@@ -21,13 +22,13 @@
                 <ui:Button x:Name="showContextButton"
                            Content="Change Patient Context"
                            Appearance="Secondary"
-                           Click="ShowPatientContext_Click" />
+                           Click="ShowPatientContext_Click" Margin="0,0,0,8" />
 
                 <!-- Patient Context Menu -->
-                <StackPanel x:Name="patientContextMenu" Spacing="6">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="6">
+                <StackPanel x:Name="patientContextMenu">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,6">
                         <TextBlock Text="Patient Id" VerticalAlignment="Center" />
-                        <ComboBox IsEditable="True" x:Name="patientId" Width="280"
+                        <ComboBox IsEditable="True" x:Name="patientId" Width="280" Margin="6,0,0,0"
                                   ItemsSource="{Binding Suggestions}"
                                   DisplayMemberPath="Display"
                                   IsTextSearchEnabled="False"
@@ -35,7 +36,7 @@
                                   PreviewTextInput="patientId_PreviewTextInput"
                                   PreviewKeyDown="patientId_PreviewKeyDown"
                                   DropDownClosed="patientId_DropDownClosed" />
-                        <ComboBox ItemsSource="{Binding Courses}" Width="160"
+                        <ComboBox ItemsSource="{Binding Courses}" Width="160" Margin="6,0,0,0"
                                   ToolTip="Course"
                                   SelectedItem="{Binding SelectedCourse, Mode=TwoWay}">
                             <ComboBox.ItemTemplate>
@@ -44,7 +45,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <ComboBox ItemsSource="{Binding PlanItems}" Width="160"
+                        <ComboBox ItemsSource="{Binding PlanItems}" Width="160" Margin="6,0,0,0"
                                   ToolTip="Plan"
                                   SelectedItem="{Binding SelectedPlanItem, Mode=TwoWay}">
                             <ComboBox.ItemTemplate>
@@ -53,16 +54,16 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <ui:Button Margin="5,0,0,0" Padding="10,6" Command="{Binding SaveContextCommand}">
-                            <ui:Button.Icon>
-                                <ui:SymbolIcon Symbol="Save24" />
-                            </ui:Button.Icon>
-                            Save
+                        <ui:Button Margin="6,0,0,0" Padding="10,6" Command="{Binding SaveContextCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/ESAPIX_StarterUI1;component/Resources/save.png" Width="16" Height="16" Margin="0,0,6,0" />
+                                <TextBlock Text="Save" VerticalAlignment="Center" />
+                            </StackPanel>
                         </ui:Button>
                     </StackPanel>
 
                     <!-- Status Bar -->
-                    <ui:Card Padding="6">
+                    <ui:Card Padding="6" Margin="0,0,0,6">
                         <TextBlock Text="{Binding Status}" HorizontalAlignment="Center"/>
                     </ui:Card>
                 </StackPanel>
