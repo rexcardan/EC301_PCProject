@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net480</TargetFramework>
     <RootNamespace>ESAPIX_WPF_ExampleTests</RootNamespace>
 
     <IsPackable>false</IsPackable>
@@ -23,10 +23,10 @@
 
 	<ItemGroup>
 		<Reference Include="VMS.TPS.Common.Model.API">
-			<HintPath>..\..\..\..\..\..\Program Files (x86)\Varian\RTM\16.1\esapi\API\VMS.TPS.Common.Model.API.dll</HintPath>
+			<HintPath>C:\Program Files (x86)\Varian\RTM\18.1\esapi\API\VMS.TPS.Common.Model.API.dll</HintPath>
 		</Reference>
 		<Reference Include="VMS.TPS.Common.Model.Types">
-			<HintPath>..\..\..\..\..\..\Program Files (x86)\Varian\RTM\16.1\esapi\API\VMS.TPS.Common.Model.Types.dll</HintPath>
+			<HintPath>C:\Program Files (x86)\Varian\RTM\18.1\esapi\API\VMS.TPS.Common.Model.Types.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 	
