@@ -1,16 +1,7 @@
-﻿using ESAPIX.Interfaces;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ESAPIX.Common;
-using VMS.TPS.Common.Model.API;
-using Prism.Commands;
-using System.Windows;
-using ESAPIX.Extensions;
+﻿using ESAPIX.Common;
 using ESAPIX.Constraints.DVH;
+using Prism.Commands;
+using Prism.Mvvm;
 using System.Collections.ObjectModel;
 
 namespace ESAPX_StarterUI.ViewModels
