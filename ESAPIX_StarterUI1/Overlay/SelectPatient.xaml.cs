@@ -17,6 +17,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using VMS.TPS.Common.Model.API;
+using Wpf.Ui.Appearance;
 
 
 #endregion
@@ -258,5 +259,15 @@ namespace ESAPIX.AppKit.Overlay
             public UISummary Summary { get; set; }
         }
         #endregion
+
+        private void ThemeSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dark = ThemeSwitch?.IsChecked == true;
+                ApplicationThemeManager.Apply(dark ? ApplicationTheme.Dark : ApplicationTheme.Light);
+            }
+            catch { /* ignore if theme manager unavailable */ }
+        }
     }
 }
