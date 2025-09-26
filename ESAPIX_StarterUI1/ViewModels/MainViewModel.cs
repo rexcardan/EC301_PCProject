@@ -27,6 +27,7 @@ namespace ESAPX_StarterUI.ViewModels
                 {
                     var result = VMS.GetValue(sc =>
                     {
+
                         //Check if we can constrain first
                         var canConstrain = pc.Constraint.CanConstrain(sc.PlanSetup);
                         //If not..report why
