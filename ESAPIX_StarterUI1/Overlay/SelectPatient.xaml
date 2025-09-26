@@ -7,7 +7,7 @@
             <StackPanel MinWidth="600">
                 <!-- Header with Theme Toggle -->
                 <DockPanel Margin="0,0,0,8">
-                    <TextBlock Text="ESAPIX Patient Selector" FontWeight="Bold" FontSize="16" DockPanel.Dock="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="ESAPIX Patient Selector" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" DockPanel.Dock="Top" VerticalAlignment="Center" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
                         <TextBlock Text="Theme" VerticalAlignment="Center" Margin="0,0,8,0" />
                         <ui:ToggleSwitch x:Name="ThemeSwitch"

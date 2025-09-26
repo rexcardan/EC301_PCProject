@@ -31,9 +31,11 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Constraints" Grid.Row="0" Padding="5" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="Constraints" HorizontalAlignment="Center" Grid.Row="0" Padding="5" FontWeight="Bold" FontSize="16"/>
 
                 <ui:DataGrid Grid.Row="1"
+                             BorderBrush="White"
+                             BorderThickness="1"
                              Margin="0,8,0,8"
                              AutoGenerateColumns="False"
                              ItemsSource="{Binding Constraints}"
@@ -43,8 +45,8 @@
                              Height="300">
                     <ui:DataGrid.Columns>
                         <DataGridTextColumn Header="Constraint" Binding="{Binding Constraint.FullName}"/>
-                        <DataGridTextColumn Header="Result" Binding="{Binding Result.ResultType}"/>
-                        <DataGridTextColumn Header="Message" Binding="{Binding Result.Message}" Width="*"/>
+                        <DataGridTextColumn Header="Result"  Width="*" Binding="{Binding Result.ResultType}"/>
+                        <DataGridTextColumn Header="Message" Width="*" Binding="{Binding Result.Message}"/>
                     </ui:DataGrid.Columns>
                 </ui:DataGrid>
 
